@@ -51,6 +51,8 @@ public class PoroTypeClawDeBounce extends LinearOpMode {
                 in = !in;
                 inner.setPosition(in ? .5 : 0);
             }
+            pIn = gamepad1.left_bumper;
+            pOut = gamepad1.right_bumper;
             if (gamepad1.dpad_down) armPos = .33;
             if (gamepad1.dpad_left) armPos = 1;
             if (gamepad1.dpad_right) armPos = 0;
