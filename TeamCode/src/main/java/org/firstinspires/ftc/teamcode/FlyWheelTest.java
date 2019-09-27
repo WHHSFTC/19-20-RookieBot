@@ -45,6 +45,7 @@ public class FlyWheelTest extends LinearOpMode {
             }
             telemetry.addData("Status", "Run Time: " + runTime.toString());
             telemetry.addData("Servor Power", "Unable to tell");
+            telemetry.update();
         }
     }
 }
