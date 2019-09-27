@@ -34,17 +34,19 @@ public class FlyWheelTest extends LinearOpMode {
             if (gamepad1.a) {
                 leftServo.setPower(.5);
                 rightServo.setPower(-.5);
+                telemetry.addData("Servor Power", "left (%.2f), right (%.2f)", .5, -.5);
             }
             if (gamepad1.b) {
                 leftServo.setPower(0);
                 rightServo.setPower(0);
+                telemetry.addData("Servor Power", "left (%.2f), right (%.2f)", 0, 0);
             }
             if (gamepad1.y) {
                 leftServo.setPower(-.5);
                 rightServo.setPower(.5);
+                telemetry.addData("Servor Power", "left (%.2f), right (%.2f)", -.5, .5);
             }
             telemetry.addData("Status", "Run Time: " + runTime.toString());
-            telemetry.addData("Servor Power", "Unable to tell");
             telemetry.update();
         }
     }

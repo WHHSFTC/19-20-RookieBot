@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="MoveTeleMecanum", group="Linear OpMode")
-public class MoveTele extends LinearOpMode{
+@TeleOp(name="MoveTeleMecanumDeBounce", group="Linear OpMode")
+public class MoveTeleDeBounce extends LinearOpMode{
 
     private ElapsedTime runTime = new ElapsedTime();
 
@@ -79,6 +79,8 @@ public class MoveTele extends LinearOpMode{
         double innerPos = 0.0;
         double outerPos = 0.0;
 
+        boolean in = false, out = false, pIn = false, pOut = false;
+
         waitForStart();
         runTime.reset();
 
@@ -102,11 +104,18 @@ public class MoveTele extends LinearOpMode{
                                     gamepad2.b ? 0 :
                                             gamepad2.x ? 1 :
                                                     wristPos;
+            
+            if (gamepad2.right_bumper && !pOut) {
+                out = !out;
+                outer.setPosition(out ? 0 : .5);
+            }
+            if (gamepad2.left_bumper && !pIn) {
+                in = !in;
+                inner.setPosition(in ? .5 : 0);
+            }
 
-            innerPos = gamepad2.right_bumper ? 0 : innerPos;
-            innerPos = gamepad2.left_bumper ? .5 : innerPos;
-            outerPos = gamepad2.right_bumper ? .5 : outerPos;
-            outerPos = gamepad2.left_bumper ? 0 : outerPos;
+            pIn = gamepad2.left_bumper;
+            pOut = gamepad2.right_bumper;
 
             armPos =
                     gamepad2.dpad_down ? .33 :

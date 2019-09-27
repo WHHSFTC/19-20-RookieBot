@@ -41,21 +41,21 @@ public class MotorSpoolTest extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            double power;
+            double pwr;
             double m;
 
-            power = -gamepad1.right_stick_y;
-            m = Math.max(Math.abs(power), 1.0);
+            pwr = -gamepad1.right_stick_y;
+            m = Math.max(Math.abs(pwr), 1.0);
 
-            power /= m;
+            pwr /= m;
 
-            yi.setPower(power);
-            er.setPower(power);
-            san.setPower(power);
-            si.setPower(power);
+            yi.setPower(pwr);
+            er.setPower(pwr);
+            san.setPower(pwr);
+            si.setPower(pwr);
 
             telemetry.addData("Status", "Run Time: " + runTime.toString());
-            telemetry.addData("Motor Power", "Power: (%.2f)", power);
+            telemetry.addData("Motor Power", "Power: (%.2f)", pwr);
             telemetry.update();
 
         }
